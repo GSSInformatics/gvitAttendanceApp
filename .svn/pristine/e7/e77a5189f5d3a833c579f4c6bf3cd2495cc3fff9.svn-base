@@ -1,0 +1,96 @@
+package com.gvit.gims.attendance;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.gvit.gims.attendance.dtos.ClassInformationDTO;
+
+/**
+ * 
+ * @author GSS
+ *
+ */
+public class Students extends Activity {
+
+	private final List<String> absentees = new ArrayList<>();
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_students);
+		loadStudentList();
+		createLoadStudentsButton();
+	}
+
+	private void createLoadStudentsButton() {
+		View loadStundButton = findViewById(R.id.preview);
+		loadStundButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				ClassInformationDTO classSelectionDTO = (ClassInformationDTO) getIntent().getSerializableExtra("classSelectionDTO");
+				classSelectionDTO.setAbsentees((ArrayList<String>) absentees);
+				
+				Intent intent = new Intent(Students.this,
+						AttendancePreview.class);
+
+				// 3. or you can add data to a bundle
+				Bundle extras = new Bundle();
+				extras.putSerializable("classSelectionDTO", classSelectionDTO);
+
+//				extras.putStringArrayList("Absentees",
+//						(ArrayList<String>) absentees);
+
+				// 4. add bundle to intent
+				intent.putExtras(extras);
+
+				// 5. start the activity
+				startActivity(intent);
+			}
+		});
+	}
+
+	private List<String> loadStudentList() {
+		String studentCriteria = getIntent().getStringExtra("studentListSelection");
+		int resId = getResources().getIdentifier(studentCriteria, "array", getPackageName());
+		CustomList adapter = new CustomList(Students.this, getResources()
+				.getStringArray(resId), R.drawable.happy);
+
+		ListView listView = (ListView) findViewById(R.id.list);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapterView, View view,
+					int position, long id) {
+				TextView txtTitle = (TextView) view
+						.findViewById(R.id.attendStatus);
+				TextView studentNameView = (TextView) view
+						.findViewById(R.id.students);
+				String studentName = (String) studentNameView.getText();
+				CharSequence status = txtTitle.getText();
+				if (status.equals(getResources().getString(R.string.present))) {
+					txtTitle.setText(getResources().getString(R.string.absent));
+					absentees.add(studentName);
+					Toast.makeText(Students.this, studentName + " is absent",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					txtTitle.setText(getResources().getString(R.string.present));
+					absentees.remove(studentName);
+				}
+			}
+
+		});
+		return absentees;
+	}
+}

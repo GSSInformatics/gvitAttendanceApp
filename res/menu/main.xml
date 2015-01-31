@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gvit.gims.attendance.ClassSelection" >
+
+   <item
+        android:id="@+id/export"
+        android:orderInCategory="100"
+        android:title="@string/export"
+        app:showAsAction="always"/>
+</menu>

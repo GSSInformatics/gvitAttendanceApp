@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/mainHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/maintanence_text" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/mainHeading"
+        android:layout_below="@+id/mainHeading"
+        android:layout_marginTop="91dp"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRowStudents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/studentsButton"
+                    android:layout_width="158dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/load_students" />
+
+                <ProgressBar
+                    android:id="@+id/stuProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateBehavior="repeat"
+                    android:visibility="invisible" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRowSubjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/subjectsButton"
+                    android:layout_width="158dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/load_subjects" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRowUsers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/usersButton"
+                        android:layout_width="158dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/load_users" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </TableRow>
+        </TableLayout>
+            
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/attendanceButton"
+                    android:layout_width="158dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sync_attendance" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+        </TableLayout>
+          
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/returnButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/return_to_login" />
+
+</RelativeLayout>

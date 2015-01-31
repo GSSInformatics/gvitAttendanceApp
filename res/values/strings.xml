@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Attendance</string>
+    <string name="welcomeText">Welcome to GVIT attendance</string>
+
+    <string-array name="Section">
+        <item>A</item>
+        <item>B</item>
+    </string-array>
+    <string-array name="Year">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="Period">
+        <item>Period 1</item>
+        <item>Period 2</item>
+        <item>Period 3</item>
+        <item>Period 4</item>
+        <item>Period 5</item>
+        <item>Period 6</item>
+        <item>Period 7</item>
+        <item>Period 8</item>
+        <item>Lab Work</item>
+    </string-array>
+
+    <string name="title_activity_students">Students</string>
+    <string name="load_students">Load Students</string>
+    <string name="present">Present</string>
+    <string name="absent">Absent</string>
+    <string name="preview">Preview</string>
+    <string name="title_activity_attendance_preview">AttendancePreview</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="confirmAttendance">Confirm Attendance</string>
+    <string name="settings_text">Settings</string>
+    <string name="export">Export</string>
+    <string name="title_activity_maintanance">Maintanance</string>
+    <string name="load_subjects">Load Subjects</string>
+    <string name="maintanence_text">Admin Screen</string>
+
+</resources>

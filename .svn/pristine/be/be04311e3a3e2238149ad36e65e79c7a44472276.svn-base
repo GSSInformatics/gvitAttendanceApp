@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/mainHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hello_world" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainHeading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/usersButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/load_users" />
+
+        <Button
+            android:id="@+id/studentsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/load_students" />
+
+        <Button
+            android:id="@+id/attendanceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_attendance" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/returnButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/return_to_login" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/mainHeading"
+        android:layout_below="@+id/mainHeading"
+        android:layout_marginTop="30dp" />
+
+</RelativeLayout>

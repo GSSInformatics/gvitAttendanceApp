@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="@string/welcomeText"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="58dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Spinner
+                android:id="@+id/groupSpinner"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:entries="@array/Group"
+                android:visibility="visible" />
+              <Spinner
+                android:id="@+id/departmentSpinner"
+               android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:entries="@array/Department"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+ 		<Spinner
+                android:id="@+id/yearSpinner"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/Year"
+                android:visibility="visible" />
+ 		 <Spinner
+                android:id="@+id/sectionSpinner"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/Section"
+                android:visibility="visible" />
+          
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Spinner
+                android:id="@+id/periodSpin"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:entries="@array/Period"
+                android:visibility="visible" />
+            <Spinner
+                android:id="@+id/subjectSpin"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:entries="@array/subject"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <DatePicker
+                android:id="@+id/attendanceDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/loadStudentsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/tableLayout1"
+        android:text="@string/load_students" />
+
+</RelativeLayout>
