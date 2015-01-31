@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-     <string-array name="Department">
-        <item>CSE</item>
-        <item>ECE</item>
-        <item>ELE</item>
-        <item>MECH</item>
-    </string-array>
-</resources>

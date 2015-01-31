@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="load_users">Load Users</string>
-    <string name="load_students">Load Students</string>
-    <string name="sync_attendance">Sync Attendance</string>
-    <string name="return_to_login">Return to login</string>    
-</resources>
