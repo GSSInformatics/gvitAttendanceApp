@@ -3,8 +3,8 @@ package com.gvit.gims.attendance;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -17,16 +17,18 @@ import android.widget.Toast;
 
 import com.gvit.gims.attendance.dtos.ClassInformationDTO;
 import com.gvit.gims.attendance.login.LoginDBContentProvider;
+import com.gvit.gims.navigationdrawer.BaseActivity;
 
 /**
  * @author Ajaykumar Vasireddy
  * @version 0.1
  * @since 2014
  */
-public class Students extends Activity {
+public class Students extends BaseActivity {
 
 	private final List<Student> absentees = new ArrayList<>();
-
+	private String[] navMenuTitles;
+	private TypedArray navMenuIcons;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +36,12 @@ public class Students extends Activity {
 		List<Student> studentsFromDB = loadStudentsFromDB();
 		loadStudentList(studentsFromDB);
 		createLoadStudentsButton();
+		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load
+
+		navMenuIcons = getResources()
+				.obtainTypedArray(R.array.nav_drawer_icons);// load icons from
+
+		set(navMenuTitles, navMenuIcons);
 	}
 
 	private void createLoadStudentsButton() {

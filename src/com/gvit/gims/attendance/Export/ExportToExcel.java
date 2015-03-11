@@ -48,7 +48,6 @@ public class ExportToExcel {
 				Log.e("after FileWriter :file name", outFile.toString());
 				BufferedWriter out = new BufferedWriter(fileWriter);
 				csvHeader += "\"" + "Date" + "\",";
-				csvHeader += "\"" + "Group" + "\",";
 				csvHeader += "\"" + "Department" + "\",";
 				csvHeader += "\"" + "Section" + "\",";
 				csvHeader += "\"" + "Year" + "\",";

@@ -29,23 +29,24 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_centerVertical="true"
-        android:textColor="#343434"/>
+        android:textColor="#040404"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:text="Serial"/>
     
      <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/studentsID"
-        android:layout_centerVertical="true"
-        android:textColor="#343434"/>
+        android:layout_below="@+id/studentsID"
+        android:layout_alignLeft="@+id/studentsID"
+        android:paddingTop="8dip"
+        android:layout_centerHorizontal="true"
+        android:textColor="#040404"
+        android:textSize="10dip"
+        android:textStyle="bold"
+        android:text="FirstName"/>
      
-      <TextView
-        android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/firstName"
-        android:layout_centerVertical="true"
-        android:textColor="#343434"/>
     
     <!-- Student Name -->
     <TextView

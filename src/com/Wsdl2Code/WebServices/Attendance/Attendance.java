@@ -32,7 +32,7 @@ import com.Wsdl2Code.WebServices.Users.VectorUsers;
 public class Attendance {
     
     public String NAMESPACE ="http://tempuri.org/";
-    public String url="http://192.168.88.113:8080/webservices/Attendance.asmx";
+    public String url="http://192.168.88.29:8080/webservices/Attendance.asmx";
     public int timeOut = 60000;
     public IWsdl2CodeEvents eventHandler;
     public SoapProtocolVersion soapVersion;

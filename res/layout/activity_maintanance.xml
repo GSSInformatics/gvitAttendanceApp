@@ -62,9 +62,10 @@
                     android:text="@string/load_subjects" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar2"
+                    android:id="@+id/subjectProgress"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
 
             </TableRow>
         </TableLayout>
@@ -85,9 +86,10 @@
                         android:text="@string/load_users" />
 
                     <ProgressBar
-                        android:id="@+id/progressBar3"
+                        android:id="@+id/usersProgress"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible" />
 
                 </TableRow>
         </TableLayout>
@@ -102,7 +104,7 @@
                 android:layout_height="wrap_content" >
 
                 <Button
-                    android:id="@+id/attendanceButton"
+                    android:id="@+id/syncAttButton"
                     android:layout_width="158dp"
                     android:layout_height="wrap_content"
                     android:text="@string/sync_attendance" />
@@ -110,7 +112,8 @@
                 <ProgressBar
                     android:id="@+id/progressBar4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
 
             </TableRow>
         </TableLayout>

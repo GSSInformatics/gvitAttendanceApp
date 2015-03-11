@@ -3,10 +3,12 @@
  */
 package com.gvit.gims.attendance.maintanence;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.Wsdl2Code.WebServices.Attendance.Attendance;
 import com.Wsdl2Code.WebServices.Attendance.IWsdl2CodeEvents;
@@ -22,15 +24,19 @@ import com.gvit.gims.attendance.login.LoginDBContentProvider;
 public class LoadUsersListener implements OnClickListener, IWsdl2CodeEvents {
 
 	private ContentResolver contentResolver;
+	private Button userBtn;
+	private View userProgress;
 
-	public LoadUsersListener(ContentResolver contentResolver) {
-		this.contentResolver = contentResolver;
+	public LoadUsersListener(Activity context) {
+		this.contentResolver = context.getContentResolver();
+		userBtn = (Button) context.findViewById(R.id.usersButton);
+		userProgress = context.findViewById(R.id.usersProgress);
 	}
-	
+
 	@Override
 	public void Wsdl2CodeStartedRequest() {
-		// TODO Auto-generated method stub
-
+		userProgress.setVisibility(View.VISIBLE);
+		userBtn.setEnabled(false);
 	}
 
 	@Override
@@ -43,6 +49,8 @@ public class LoadUsersListener implements OnClickListener, IWsdl2CodeEvents {
 			getContentResolver().insert(
 					LoginDBContentProvider.LOGIN_CONTENT_URI, rowValue);
 		}
+		userProgress.setVisibility(View.GONE);
+		userBtn.setEnabled(true);
 
 	}
 
@@ -52,8 +60,8 @@ public class LoadUsersListener implements OnClickListener, IWsdl2CodeEvents {
 
 	@Override
 	public void Wsdl2CodeFinishedWithException(Exception ex) {
-		// TODO Auto-generated method stub
-
+		userProgress.setVisibility(View.GONE);
+		userBtn.setEnabled(true);
 	}
 
 	@Override

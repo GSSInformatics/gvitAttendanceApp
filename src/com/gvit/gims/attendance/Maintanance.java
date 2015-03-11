@@ -1,17 +1,14 @@
 package com.gvit.gims.attendance;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.Wsdl2Code.WebServices.Attendance.IWsdl2CodeEvents;
-import com.Wsdl2Code.WebServices.Users.Users;
-import com.Wsdl2Code.WebServices.Users.VectorUsers;
-import com.gvit.gims.attendance.login.LoginDBContentProvider;
 import com.gvit.gims.attendance.maintanence.LoadAttendanceListener;
 import com.gvit.gims.attendance.maintanence.LoadStudentsListener;
 import com.gvit.gims.attendance.maintanence.LoadSubjectsListener;
@@ -36,11 +33,12 @@ public class Maintanance extends Activity implements OnClickListener,
 		findViewById(R.id.returnButton).setOnClickListener(this);
 		
 		ProgressBar stuProgBar = (ProgressBar) findViewById(R.id.stuProgressBar);
-		findViewById(R.id.studentsButton).setOnClickListener(new LoadStudentsListener(getContentResolver(), stuProgBar));
+		Button studentBtn = (Button) findViewById(R.id.studentsButton);
+		studentBtn.setOnClickListener(new LoadStudentsListener(getContentResolver(), stuProgBar, studentBtn));
 		
-		findViewById(R.id.usersButton).setOnClickListener(new LoadUsersListener(getContentResolver()));
-		findViewById(R.id.subjectsButton).setOnClickListener(new LoadSubjectsListener(getContentResolver()));
-		findViewById(R.id.attendanceButton).setOnClickListener(new LoadAttendanceListener(getContentResolver()));
+		findViewById(R.id.usersButton).setOnClickListener(new LoadUsersListener(this));
+		findViewById(R.id.subjectsButton).setOnClickListener(new LoadSubjectsListener(this));
+		findViewById(R.id.syncAttButton).setOnClickListener(new LoadAttendanceListener(this));
 	}
 
 	@Override
@@ -73,7 +71,6 @@ public class Maintanance extends Activity implements OnClickListener,
 
 	@Override
 	public void Wsdl2CodeEndedRequest() {
-		// TODO Auto-generated method stub
 
 	}
 }

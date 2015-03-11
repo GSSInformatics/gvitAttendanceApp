@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.Wsdl2Code.WebServices.Attendance.Attendance;
@@ -24,20 +25,26 @@ public class LoadStudentsListener implements OnClickListener, IWsdl2CodeEvents {
 
 	private ContentResolver contentResolver;
 	private ProgressBar progressBar;
+	private Button studentBtn;
 
 	public LoadStudentsListener(ContentResolver contentResolver,
-			ProgressBar stuProgBar) {
+			ProgressBar stuProgBar, Button studentBtn) {
 		this.contentResolver = contentResolver;
 		this.progressBar = stuProgBar;
+		this.studentBtn = studentBtn;
 	}
 
 	@Override
 	public void Wsdl2CodeStartedRequest() {
+		studentBtn.setEnabled(false);
 		progressBar.setVisibility(View.VISIBLE);
+		progressBar.animate();
 	}
 
 	@Override
 	public void Wsdl2CodeFinished(String methodName, Object Data) {
+//		getContentResolver().delete(LoginDBContentProvider.STUDENT_CONTENT_URI,
+//				null, null);
 		VectorStudent studentList = (VectorStudent) Data;
 		for (Student stud : studentList) {
 			ContentValues rowValue = new ContentValues();
@@ -49,7 +56,9 @@ public class LoadStudentsListener implements OnClickListener, IWsdl2CodeEvents {
 			getContentResolver().insert(
 					LoginDBContentProvider.STUDENT_CONTENT_URI, rowValue);
 		}
+		progressBar.clearAnimation();
 		progressBar.setVisibility(View.GONE);
+		studentBtn.setEnabled(true);
 
 	}
 
@@ -59,20 +68,19 @@ public class LoadStudentsListener implements OnClickListener, IWsdl2CodeEvents {
 
 	@Override
 	public void Wsdl2CodeFinishedWithException(Exception ex) {
-
+		progressBar.clearAnimation();
+		studentBtn.setEnabled(true);
+		progressBar.setVisibility(View.VISIBLE);
 	}
 
 	@Override
 	public void Wsdl2CodeEndedRequest() {
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.studentsButton:
-			getContentResolver().delete(
-					LoginDBContentProvider.STUDENT_CONTENT_URI, null, null);
 			Attendance attendanceService = new Attendance(this);
 			try {
 				attendanceService.getStudentsAsync();

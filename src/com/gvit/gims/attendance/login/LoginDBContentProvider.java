@@ -20,20 +20,20 @@ public class LoginDBContentProvider extends ContentProvider {
 	static final String TABLE_NAME_STUDENT = "STUDENT";
 	public static final String TABLE_NAME_SUBJECT = "SUBJECT";
 
-	static final String PROVIDER_NAME = "com.gvit.gims.attendance.login";
-	
+	static final String PROVIDER_NAME = "com.gvit.gims.attendance";
+
 	static final String LOGIN_URL = "content://" + PROVIDER_NAME + "/LOGIN";
 	public static final Uri LOGIN_CONTENT_URI = Uri.parse(LOGIN_URL);
-	
-	static final String STATUS_URL = "content://" + PROVIDER_NAME + "/STATUS";
+
+	static final String STATUS_URL = "content://" + PROVIDER_NAME + "/ABSENTEES";
 	public static final Uri STATUS_CONTENT_URI = Uri.parse(STATUS_URL);
 
 	static final String STUDENT_URL = "content://" + PROVIDER_NAME + "/STUDENT";
 	public static final Uri STUDENT_CONTENT_URI = Uri.parse(STUDENT_URL);
-	
+
 	static final String SUBJECT_URL = "content://" + PROVIDER_NAME + "/SUBJECT";
 	public static final Uri SUBJECT_CONTENT_URI = Uri.parse(SUBJECT_URL);
-	
+
 	static final String DATABASE_NAME = "attendance.db";
 	static final int DATABASE_VERSION = 1;
 	public static final int NAME_COLUMN = 3;
@@ -46,33 +46,35 @@ public class LoginDBContentProvider extends ContentProvider {
 			+ "ID integer primary key autoincrement,ATTDATE text,"
 			+ "YEAR text, BRANCH text, SECTION text,"
 			+ "REGNO text, PERIOD text, SUBJECT text) ";
-	
-	static final String CREATE_STUDENT_TABLE =  "create table "
+
+	static final String CREATE_STUDENT_TABLE = "create table "
 			+ TABLE_NAME_STUDENT + "( "
 			+ "ID integer primary key autoincrement,"
 			+ "YEAR text, BRANCH text, SECTION text,"
 			+ "REGNO text, NAME text) ";
-	
-	static final String CREATE_SUBJECT_TABLE =  "create table "
+
+	static final String CREATE_SUBJECT_TABLE = "create table "
 			+ TABLE_NAME_SUBJECT + "( "
 			+ "ID integer primary key autoincrement,"
 			+ "YEAR text, BRANCH text, SECTION text,"
 			+ "SEMESTER text, SUBJECTCODE text) ";
-	
+
 	private static UriMatcher uriMatcher;
 	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		uriMatcher.addURI(PROVIDER_NAME, TABLE_NAME_LOGIN, 1);
 		uriMatcher.addURI(PROVIDER_NAME, TABLE_NAME_ABSENTEES, 2);
 		uriMatcher.addURI(PROVIDER_NAME, TABLE_NAME_STUDENT, 3);
+		uriMatcher.addURI(PROVIDER_NAME, TABLE_NAME_SUBJECT, 4);
 	}
 
 	private SQLiteDatabase db;
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selecArgs) {
-		getContext().getContentResolver().notifyChange(uri, null);
-		return db.delete(TABLE_NAME_LOGIN, selection, selecArgs);
+		return 0;
+//		getContext().getContentResolver().notifyChange(uri, null);
+//		return db.delete(TABLE_NAME_LOGIN, selection, selecArgs);
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public class LoginDBContentProvider extends ContentProvider {
 				return _uri;
 			}
 			break;
-		case 4: 
+		case 4:
 			long subjectRow = db.insert(TABLE_NAME_SUBJECT, null, values);
 
 			if (subjectRow > 0) {
@@ -129,8 +131,7 @@ public class LoginDBContentProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
-		DatabaseHelper dbHelper = new DatabaseHelper(getContext(),
-				DATABASE_NAME, null, DATABASE_VERSION);
+		DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 		/**
 		 * Create a write able database which will trigger its creation if it
 		 * doesn't already exist.
@@ -146,20 +147,30 @@ public class LoginDBContentProvider extends ContentProvider {
 		case 1:
 			SQLiteQueryBuilder getUsers = new SQLiteQueryBuilder();
 			getUsers.setTables(TABLE_NAME_LOGIN);
-			return getUsers.query(db, null, null, null, null, null, sortOrder);
+			String selectUserNPass = "USERNAME=? AND PASSWORD=?";
+			return getUsers.query(db, projection, selectUserNPass,
+					selectionArgs, null, null, sortOrder);
 		case 2:
 			SQLiteQueryBuilder loadAttendance = new SQLiteQueryBuilder();
 			loadAttendance.setTables(TABLE_NAME_ABSENTEES);
 			loadAttendance.appendWhere(selection + "=?");
 			return loadAttendance.query(db, projection, selection,
 					selectionArgs, null, null, sortOrder);
-		
+
 		case 3:
 			SQLiteQueryBuilder loadStudents = new SQLiteQueryBuilder();
 			loadStudents.setTables(TABLE_NAME_STUDENT);
 			String select = "YEAR=? AND BRANCH=? AND SECTION=?";
-			return loadStudents.query(db, projection, select, selectionArgs, null, null, sortOrder);
+			return loadStudents.query(db, projection, select, selectionArgs,
+					null, null, sortOrder);
+		case 4:
+			SQLiteQueryBuilder loadSubjects = new SQLiteQueryBuilder();
+			loadSubjects.setTables(TABLE_NAME_SUBJECT);
+			String selectSubjects = "BRANCH=? AND YEAR=?";
+			return loadSubjects.query(db, projection, selectSubjects,
+					selectionArgs, null, null, sortOrder);
 		}
+
 		return null;
 	}
 

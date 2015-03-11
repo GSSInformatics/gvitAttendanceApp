@@ -69,11 +69,20 @@
             android:name=".Maintanance"
             android:label="@string/title_activity_maintanance" >
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.gvit.gims.attendance.timetable.TimeTableActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.gvit.gims.navigationdrawer.FirstActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="com.gvit.gims.navigationdrawer.SecondActivity" />
     </application>
-    <!--
-     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
-     option is required to comply with the Google+ Sign-In developer policies
-    -->
 
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

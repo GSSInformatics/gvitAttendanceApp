@@ -39,5 +39,16 @@
     <string name="title_activity_maintanance">Maintanance</string>
     <string name="load_subjects">Load Subjects</string>
     <string name="maintanence_text">Admin Screen</string>
+    <string name="title_activity_main">MainActivity</string>
+    
+    <string-array name="nav_drawer_items">
+        <item>ClassSelection</item>
+        <item>TimeTable</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+    </array>
 
 </resources>

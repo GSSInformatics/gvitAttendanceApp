@@ -3,10 +3,13 @@
  */
 package com.gvit.gims.attendance.maintanence;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.Wsdl2Code.WebServices.Attendance.Attendance;
 import com.Wsdl2Code.WebServices.Attendance.IWsdl2CodeEvents;
@@ -22,14 +25,19 @@ import com.gvit.gims.attendance.login.LoginDBContentProvider;
 public class LoadSubjectsListener implements OnClickListener, IWsdl2CodeEvents {
 
 	private ContentResolver contentResolver;
+	private ProgressBar progressBar;
+	private Button subjectsBtn;
 
-	public LoadSubjectsListener(ContentResolver contentResolver) {
-		this.contentResolver = contentResolver;
+	public LoadSubjectsListener(Activity context) {
+		this.contentResolver = context.getContentResolver();
+		progressBar = (ProgressBar) context.findViewById(R.id.subjectProgress);
+		subjectsBtn = (Button) context.findViewById(R.id.subjectsButton);
 	}
 
 	@Override
 	public void Wsdl2CodeStartedRequest() {
-		// TODO Auto-generated method stub
+		progressBar.setVisibility(View.VISIBLE);
+		subjectsBtn.setEnabled(false);
 
 	}
 
@@ -46,6 +54,8 @@ public class LoadSubjectsListener implements OnClickListener, IWsdl2CodeEvents {
 			getContentResolver().insert(
 					LoginDBContentProvider.SUBJECT_CONTENT_URI, rowValue);
 		}
+		progressBar.setVisibility(View.GONE);
+		subjectsBtn.setEnabled(true);
 
 	}
 
@@ -55,8 +65,8 @@ public class LoadSubjectsListener implements OnClickListener, IWsdl2CodeEvents {
 
 	@Override
 	public void Wsdl2CodeFinishedWithException(Exception ex) {
-		// TODO Auto-generated method stub
-
+		progressBar.setVisibility(View.GONE);
+		subjectsBtn.setEnabled(true);
 	}
 
 	@Override

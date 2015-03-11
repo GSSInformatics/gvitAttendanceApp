@@ -32,8 +32,8 @@ public class LoginDatabaseAdapter {
 
 	public LoginDatabaseAdapter(Context _context) {
 		context = _context;
-		dbHelper = new DatabaseHelper(context, DATABASE_NAME, null,
-				DATABASE_VERSION);
+//		dbHelper = new DatabaseHelper(context, DATABASE_NAME, null,
+//				DATABASE_VERSION);
 
 	}
 
@@ -50,7 +50,7 @@ public class LoginDatabaseAdapter {
 		return db;
 	}
 
-	public void insertEntries(Map<String, String> usersAndPass) {
+	public void insertEntries1(Map<String, String> usersAndPass) {
 
 		db.beginTransaction();
 		String sql = "INSERT INTO LOGIN (NAME, PASSWORD) VALUES (?, ?)";
